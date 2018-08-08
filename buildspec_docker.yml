@@ -1,0 +1,13 @@
+version: 0.1
+ 
+phases:
+  pre_build:
+    commands:
+      - $(aws ecr get-login --region ap-northeast-1 --no-include-email)
+  build:
+    commands:
+      - docker build -t {REPO_NAME}:{tag} .
+      - docker tag {REPO_NAME}:{tag} {account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/{REPO_NAME}:{tag}
+      - docker push {account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/{REPO_NAME}:{tag}
+  post_build:
+    commands:
