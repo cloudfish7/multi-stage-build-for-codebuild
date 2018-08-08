@@ -9,6 +9,3 @@ RUN mkdir -p /opt/app/
 COPY --from=build1 /opt/java/target/ /opt/app/
 
 RUN  java -jar /opt/app/HelloWorld-1.0.jar
-
-
-
